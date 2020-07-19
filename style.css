@@ -116,7 +116,6 @@ a {cursor: url(img/cursor_link.png), auto;}
 
 #home_header {
     background-image: url(img/name.png);
-    image-rendering: crisp-edges;
     image-rendering: pixelated;
     position: relative;
     display: block;
