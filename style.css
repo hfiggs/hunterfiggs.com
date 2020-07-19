@@ -153,6 +153,7 @@ a {cursor: url(img/cursor_link.png), auto;}
 
 #projects_header {
     background-image: url(img/projects.png);
+    image-rendering: crisp-edges;
     image-rendering: pixelated;
     position: relative;
     display: block;
