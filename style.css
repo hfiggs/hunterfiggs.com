@@ -23,6 +23,7 @@ a {cursor: url(img/cursor_link.png), auto;}
 
 
 /* Navigation ***********/
+
 .navbar-nav li {
 
     padding-left: 40px;
@@ -33,8 +34,144 @@ a {cursor: url(img/cursor_link.png), auto;}
     font-size: 1.1em !important;
 }
 
+#test {
+    height: 100%;
+}
+
+/* Background ***********/
+
+.bg {
+
+    background-image: url(img/bg.png);
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg:after {
+    animation: grain 6s steps(10) infinite;
+    background-image: url("https://uploads-ssl.webflow.com/5ac3ff4f55be97394f6d2f9c/5b05cfdf12b5db82badf99f8_grain-texture.png");
+    background-size: 180px 180px;
+    background-repeat: repeat;
+    content: "";
+    height: 300%;
+    left: -50%;
+    opacity: .4;
+    position: fixed;
+    top: -100%;
+    width: 300%
+}
+
+@keyframes grain {
+    0%,
+    100% {transform: translate(0, 0)}
+    10% {transform: translate(-5%, -10%)}
+    30% {transform: translate(7%, -25%)}
+    40% {transform: translate(-5%, 25%)}
+    50% {transform: translate(-15%, 10%)}
+    60% {transform: translate(15%, 0)}
+    70% {transform: translate(0, 15%)}
+    80% {transform: translate(3%, 35%)}
+    90% {transform: translate(-10%, 10%)}
+}
+
+
+/* General classes ***********/
+
+.section {
+    height: 100%;
+    width: 100%;
+}
+
+.divider {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    background: url(img/ocean.jpg) no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+
+    width: 100%;
+    height: 3%;
+
+    color: #F5F5F5
+}
+
 
 /* Home ***********/
+
+#home {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#home_header {
+    background-image: url(img/name.png);
+    image-rendering: pixelated;
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 45%;
+}
+
+
+/* About ***********/
+
+#about {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Projects ***********/
+
+#projects {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#projects_header {
+    background-image: url(img/projects.png);
+    image-rendering: pixelated;
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+}
+
+
+
+
+
+
+/* OLD
+
+
 figure {
     position: relative;
     width: 100%;
@@ -52,7 +189,7 @@ figure {
 }
 
 #fixed {
-    background-image: url(img/home.png);
+    background-image: url(img/bg.png);
     position: fixed;
     display: block;
     top: 0;
@@ -66,69 +203,7 @@ figure {
     will-change: transform;
 }
 
-#fixed:after {
-    animation: grain 6s steps(10) infinite;
-    background-image: url("https://uploads-ssl.webflow.com/5ac3ff4f55be97394f6d2f9c/5b05cfdf12b5db82badf99f8_grain-texture.png");
-    background-size: 180px 180px;
-    background-repeat: repeat;
-    content: "";
-    height: 300%;
-    left: -50%;
-    opacity: .4;
-    position: fixed;
-    top: -100%;
-    width: 300%
-}
-
-#logo{
-    background-image: url(img/logo.png);
-    image-rendering: pixelated;
-    position: relative;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50% 45%;
-}
-
-@keyframes grain {
-    0%,
-    100% {transform: translate(0, 0)}
-    10% {transform: translate(-5%, -10%)}
-    30% {transform: translate(7%, -25%)}
-    40% {transform: translate(-5%, 25%)}
-    50% {transform: translate(-15%, 10%)}
-    60% {transform: translate(15%, 0)}
-    70% {transform: translate(0, 15%)}
-    80% {transform: translate(3%, 35%)}
-    90% {transform: translate(-10%, 10%)}
-}
-
-
-/* About section ***********/
-#about {
-    /* "Escheresque Dark" by Ste Patten is licensed under CC BY-SA 3.0 - Subtle Patterns © Toptal Designers */
-    background: url(img/about.png) repeat center center fixed;
-    overflow: hidden;
-
-    width: 100%;
-    height: 100%;
-
-    color: #F5F5F5
-}
-
-#headshot {
-
-    max-width: 100%;
-    height: auto;
-    
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
+END OLD */
 
 
 /*
