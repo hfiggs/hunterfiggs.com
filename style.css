@@ -14,13 +14,7 @@ html, body {
     width: 100%;
     font-family: 'Poppins', sans-serif;
     color: #222;
-
-    cursor: url(img/cursor.png), auto;
-
 }
-
-a {cursor: url(img/cursor_link.png), auto;}
-
 
 /* Navigation ***********/
 
