@@ -36,7 +36,7 @@ html, body {
 
 #bg {
 
-    background-image: url(img/bg.png);
+    background-image: url(img/bg_optimized.jpg);
     top: 0;
     left: 0;
     position: fixed;
