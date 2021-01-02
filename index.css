@@ -242,10 +242,15 @@ footer {
   position: relative;
   width: 100%;
   left: 0;
-  bottom: 0;
   background-color: #212529;
   color: white;
   text-align: center;
+
+  padding: 0.25rem;
+}
+
+footer p {
+  margin-bottom: 0;
 }
 
 /* Miscellaneous ***********/
