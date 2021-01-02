@@ -1,28 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
     <!-- Custom CSS -->
-    <link href="style.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet" />
+
+    <!-- Icon library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+      defer
+    ></script>
     <script src="scripts/main.js" defer></script>
 
     <!-- Title -->
     <title>Hunter Figgs</title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/jpg" href="./favicon.ico" />
   </head>
   <body>
-
     <!-- Navigation
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
 
@@ -55,56 +85,108 @@
         </div>
     </nav> -->
 
-
     <!-- Background -->
     <div id="bg"></div>
 
-
     <!-- Home -->
     <div id="home" class="container-fluid">
-        <div id="home_header"></div>
+      <div id="home_header"></div>
     </div>
 
     <div class="divider"></div>
 
-    
-    <!-- About 
-    <div id="about" class="container-fluid">
+    <!-- About -->
+    <!-- <div id="about" class="container-fluid">
 
     </div>
 
-    <div class="divider"></div>
-    -->
+    <div class="divider"></div> -->
 
     <!-- Projects -->
     <div id="projects" class="container-fluid">
-        <!-- <div id="projects_header"></div> -->
-        <div class="row">
+      <!-- <div id="projects_header"></div> -->
+
+      <div class="row">
         <div class="col-sm-6 mx-auto mt-4">
-                <div class="card mb-3">
-                  <a href=/projects/pathfinding/pathfinding.html>
-                    <img class="card-img-top" src="img/pathfinding_demo.gif" alt="Pathfinding Demo Gif" draggable="false">
-                  </a>
-                    <div class="card-body">
-                      <h5 class="card-title">Pathfinding</h5>
-                      <p class="card-text">An interactive web app to visualize pathfinding algorithms! Works best on large screens.</p>
-                    </div>
-                  </div>
+          <a href="#projects">
+            <div class="card mb-3">
+              <img
+                class="card-img-top"
+                src="img/ocean.jpg"
+                alt="Zelda Demo Gif"
+                draggable="false"
+              />
+
+              <div class="card-body">
+                <h5 class="card-title">The Legend of Zelda Clone</h5>
+                <p class="card-text">
+                  A clone of the original NES Zelda, built from the ground up on
+                  Monogame.
+                </p>
+              </div>
             </div>
-            <div class="col-sm-6 mx-auto mt-4">
-                <div class="card mb-3">
-                  <div>
-                    <img class="card-img-top" src="img/project_placeholder.png" alt="Project Placeholder Image" draggable="false">
-                    <div class="centered-ascii">¯\_(ツ)_/¯</div>
-                  </div>
-                    <div class="card-body">
-                      <h5 class="card-title">More coming soon!...</h5>
-                      <p class="card-text"><br></p>
-                    </div>
-                </div>
-            </div>
+          </a>
         </div>
+
+        <div class="col-sm-6 mx-auto mt-4">
+          <a href="/projects/pathfinding/pathfinding.html">
+            <div class="card mb-3">
+              <img
+                class="card-img-top"
+                src="img/pathfinding_demo.gif"
+                alt="Pathfinding Demo Gif"
+                draggable="false"
+              />
+
+              <div class="card-body">
+                <h5 class="card-title">Pathfinding</h5>
+                <p class="card-text">
+                  An interactive web app to visualize pathfinding algorithms!
+                  Works best on large screens.
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-sm-6 mx-auto mt-4">
+          <div class="card mb-3">
+            <div>
+              <img
+                class="card-img-top"
+                src="img/project_placeholder.png"
+                alt="Project Placeholder Image"
+                draggable="false"
+              />
+              <div class="centered-ascii">¯\_(ツ)_/¯</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">More coming soon!...</h5>
+              <p class="card-text"><br /></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <div class="divider"></div>
+
+    <!-- Resume -->
+    <div id="resume" class="container-fluid">
+      <div id="resume-container">
+        <img src="img/resume.jpg" class="uninteractable" />
+
+        <a href="docs/hunter_figgs-resume.pdf" download>
+          <button type="button" class="btn btn-dark">
+            <i class="fa fa-download"></i>
+            Download Resume
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      <p>Copyright &copy; 2021 Hunter Figgs.</p>
+    </footer>
   </body>
 </html>

@@ -1,9 +1,11 @@
 body {
-    background: white;
+  background: white;
 }
 
 h1 {
   text-align: center;
+
+  margin-bottom: 2rem;
 }
 
 table {
@@ -56,7 +58,7 @@ td:hover {
 
 @keyframes makeSeen {
   0% {
-    transform: scale(.3);
+    transform: scale(0.3);
     background-color: rgba(0, 0, 66, 0.75);
     border-radius: 100%;
   }
@@ -67,18 +69,18 @@ td:hover {
 
   75% {
     transform: scale(1.2);
-    background-color: rgba(0, 217, 159, 0.75)
+    background-color: rgba(0, 217, 159, 0.75);
   }
 
   100% {
-    transform: scale(1.0);
+    transform: scale(1);
     background-color: rgba(0, 190, 218, 0.75);
   }
 }
 
 @keyframes makeWall {
   0% {
-    transform: scale(.3);
+    transform: scale(0.3);
     background-color: rgb(12, 53, 71);
   }
 
@@ -88,14 +90,14 @@ td:hover {
   }
 
   100% {
-    transform: scale(1.0);
+    transform: scale(1);
     background-color: rgb(12, 53, 71);
   }
 }
 
 @keyframes makePath {
   0% {
-    transform: scale(.3);
+    transform: scale(0.3);
     background-color: rgb(190, 3, 3);
   }
 
@@ -105,7 +107,21 @@ td:hover {
   }
 
   100% {
-    transform: scale(1.0);
+    transform: scale(1);
     background-color: rgb(253, 106, 53);
   }
+}
+
+/* Navigation ***********/
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-nav li {
+  padding-left: 40px;
+}
+
+.nav-link {
+  font-size: 1.1em !important;
 }
