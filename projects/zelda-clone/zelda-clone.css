@@ -1,3 +1,20 @@
+/* Changes scroll behavior to smooth */
+@media screen {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,700");
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #222;
+}
+
 article {
   display: grid;
   grid-template-columns: 1fr 1fr 10px 740px 10px 1fr 1fr;
@@ -6,12 +23,6 @@ article {
 article * {
   grid-column: 4;
 }
-
-/* Full width images */
-/* article > figure {
-  grid-column: 1 / -1;
-  margin: 20px 0;
-} */
 
 /* Navigation ***********/
 
