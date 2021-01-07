@@ -17,11 +17,28 @@ body {
 
 article {
   display: grid;
-  grid-template-columns: 1fr 1fr 10px 740px 10px 1fr 1fr;
+  grid-template-columns:
+    minmax(1.2rem, 1fr)
+    minmax(auto, 57ch)
+    minmax(1.2rem, 1fr);
+
+  font-size: 16px;
 }
 
 article * {
-  grid-column: 4;
+  grid-column: 2;
+}
+
+@media screen and (min-width: 320px) {
+  article {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  article {
+    font-size: 22px;
+  }
 }
 
 /* Navigation ***********/
