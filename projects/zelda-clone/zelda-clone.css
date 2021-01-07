@@ -1,116 +1,17 @@
-body {
-  background: white;
+article {
+  display: grid;
+  grid-template-columns: 1fr 1fr 10px 740px 10px 1fr 1fr;
 }
 
-h1 {
-  text-align: center;
-
-  margin-bottom: 2rem;
+article * {
+  grid-column: 4;
 }
 
-table {
-  margin: 0 auto;
-
-  border-collapse: collapse;
-
-  user-select: none;
-}
-
-td {
-  border: 2px solid black;
-}
-
-td:hover {
-  cursor: pointer;
-}
-
-.wall {
-  /*background: darkslategrey;*/
-  background-color: rgb(12, 53, 71);
-  animation-name: makeWall;
-  animation-duration: 0.8s;
-}
-
-.unseen {
-  /*background: lightblue;*/
-  background: white;
-}
-
-.seen {
-  background-color: rgba(0, 190, 218, 0.75);
-  animation-name: makeSeen;
-  animation-duration: 0.8s;
-}
-
-.path {
-  background: rgb(253, 106, 53);
-  animation-name: makePath;
-  animation-duration: 0.8s;
-}
-
-.start {
-  background: yellow;
-}
-
-.finish {
-  background: purple;
-}
-
-@keyframes makeSeen {
-  0% {
-    transform: scale(0.3);
-    background-color: rgba(0, 0, 66, 0.75);
-    border-radius: 100%;
-  }
-
-  50% {
-    background-color: rgba(17, 104, 217, 0.75);
-  }
-
-  75% {
-    transform: scale(1.2);
-    background-color: rgba(0, 217, 159, 0.75);
-  }
-
-  100% {
-    transform: scale(1);
-    background-color: rgba(0, 190, 218, 0.75);
-  }
-}
-
-@keyframes makeWall {
-  0% {
-    transform: scale(0.3);
-    background-color: rgb(12, 53, 71);
-  }
-
-  50% {
-    transform: scale(1.2);
-    background-color: rgb(12, 53, 71);
-  }
-
-  100% {
-    transform: scale(1);
-    background-color: rgb(12, 53, 71);
-  }
-}
-
-@keyframes makePath {
-  0% {
-    transform: scale(0.3);
-    background-color: rgb(190, 3, 3);
-  }
-
-  50% {
-    transform: scale(1.2);
-    background-color: red;
-  }
-
-  100% {
-    transform: scale(1);
-    background-color: rgb(253, 106, 53);
-  }
-}
+/* Full width images */
+/* article > figure {
+  grid-column: 1 / -1;
+  margin: 20px 0;
+} */
 
 /* Navigation ***********/
 
