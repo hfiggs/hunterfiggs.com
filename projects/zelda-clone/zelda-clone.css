@@ -12,6 +12,7 @@ body {
   height: 100%;
   width: 100%;
   font-family: "Poppins", sans-serif;
+  /* font-family: Inter, sans-serif; */
   color: #222;
 }
 
@@ -19,7 +20,7 @@ article {
   display: grid;
   grid-template-columns:
     minmax(1.2rem, 1fr)
-    minmax(auto, 57ch)
+    minmax(auto, 65ch)
     minmax(1.2rem, 1fr);
 
   font-size: 16px;
@@ -27,6 +28,14 @@ article {
 
 article * {
   grid-column: 2;
+}
+
+article h1 {
+  margin: 1rem auto;
+}
+
+article h2 {
+  /* margin-top: 1rem; */
 }
 
 @media screen and (min-width: 320px) {
