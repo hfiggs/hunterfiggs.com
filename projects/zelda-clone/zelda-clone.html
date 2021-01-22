@@ -46,6 +46,11 @@
       crossorigin="anonymous"
       defer
     ></script>
+    <script src="./scripts/p5.min.js"></script>
+    <script src="./scripts/boundary.js"></script>
+    <script src="./scripts/ray.js"></script>
+    <script src="./scripts/particle.js"></script>
+    <script src="./scripts/sketches.js"></script>
   </head>
 
   <body>
@@ -127,7 +132,7 @@
 
       <div class="w-100"><hr /></div>
 
-      <h2>Portals</h2>
+      <h2>Raycasting</h2>
 
       <figure>
         <img
@@ -139,26 +144,69 @@
       </figure>
 
       <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        autem error quod perspiciatis in totam asperiores inventore ipsum quo.
-        Eligendi provident repellat, nulla fugit quia reiciendis ipsa. Eligendi
-        sapiente facere asperiores? Veniam enim consectetur maiores modi
-        cupiditate maxime accusamus dolor, nesciunt aspernatur eum dignissimos
-        quisquam nihil rem ipsam suscipit tenetur!
+        During the last week of the project, I researched the topic of
+        <strong>Raycasting</strong> because I wanted to integrate a fun and
+        interactive lighting system into the drawing steps of the game (just to
+        spice things up).
       </p>
 
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla veniam
-        velit minima neque et tempore nihil labore aspernatur architecto id
-        nesciunt fugiat consequuntur sunt exercitationem officiis, expedita odit
-        impedit? Iusto ratione nostrum exercitationem. Nemo temporibus unde
-        eligendi soluta quo nulla repellendus? Dolor enim laboriosam debitis
-        error at corporis voluptatibus assumenda.
+        Raycasting, in simple terms, is a rendering technique where rays (lines)
+        are traced from a particular point outwards, to see what they intersect
+        with. For my lighting system, Link is the source point, and the rays are
+        truncated where they first intersect with the environment (i.e. walls,
+        blocks).
+      </p>
+
+      <p>
+        You can play around with the demo below to get an idea of how raycasting works.
+        Just grab and drag around the "light source" with your mouse.
+      </p>
+
+      <div id="raycastingSketch1"></div>
+
+      <p>
+        In the demo above, a set number of rays are drawn radially from the
+        center. This is fine just for learning, but it doesn't provide enough
+        detail to be convincing. Sometimes the rays don't make it into every
+        nook and cranny that a real light would.
+      </p>
+
+      <p>
+        So you might think: "Hey! Just increase the number of rays to get more
+        detail." And this does work pretty well:
+      </p>
+
+      <div id="raycastingSketch2"></div>
+
+      <p>
+        But it's STILL not good enough, because depending on how complicated the
+        environemnt is, we may have to generate a huge number of rays in order
+        to get lucky and fill every little crack.
+      </p>
+
+      <p>
+        But we can be clever and use a trick! We can cast a ray from Link to
+        every "corner" in the environment. This will guarantee we hit everything
+        that should be lit, and we don't have to use an arbitrarily large number
+        of rays to do it.
+      </p>
+
+      <p>[Insert raw raycasting gif here]</p>
+
+      <p>
+        Ta-da! But it kinda looks like a mess! If we fill in the gaps between rays, and use
+        some custom shader magic, we can generate a transparancy layer to draw
+        over top of the game.
+
+        <p>[Insert final raycasting gif here]</p>
+
+        <p>Ta-da! It's magic... err... not really, just a lot of work.</p>
       </p>
 
       <div class="w-100"><hr /></div>
 
-      <h2>Raycasting</h2>
+      <h2>Portals</h2>
 
       <figure>
         <img
