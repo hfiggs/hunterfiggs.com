@@ -12,21 +12,27 @@ const sk = (rayCount) => (sketch) => {
     width = sketch.width;
     height = sketch.height;
 
-    for (let i = 0; i < 5; i++) {
-      let x1 = sketch.random(width);
-      let y1 = sketch.random(height);
-      let x2 = sketch.random(width);
-      let y2 = sketch.random(height);
+    // for (let i = 0; i < 5; i++) {
+    //   let x1 = sketch.random(width);
+    //   let y1 = sketch.random(height);
+    //   let x2 = sketch.random(width);
+    //   let y2 = sketch.random(height);
 
-      walls[i] = new Boundary(x1, y1, x2, y2, sketch);
-    }
+    //   walls[i] = new Boundary(x1, y1, x2, y2, sketch);
+    // }
+
+    walls.push(new Boundary(width/4, width/4, 3/4*width, width/4, sketch));
+    walls.push(new Boundary(width/4, 3/4*width, 3/4*width, 3/4*width, sketch));
+
+    walls.push(new Boundary(width/5, width/4, width/5, 3/4*width, sketch));
+    walls.push(new Boundary(4/5*width, width/4, 4/5*width, 3/4*width, sketch));
 
     walls.push(new Boundary(0, 0, width, 0, sketch));
     walls.push(new Boundary(0, 0, 0, height, sketch));
     walls.push(new Boundary(width, 0, width, height, sketch));
     walls.push(new Boundary(0, height, width, height, sketch));
 
-    particles.push(new Particle(width / 2, width / 2, rayCount, sketch));
+    particles.push(new Particle(2/5*width, 52/100*height, rayCount, sketch));
   };
 
   sketch.draw = () => {
