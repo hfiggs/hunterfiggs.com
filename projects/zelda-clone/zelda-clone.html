@@ -211,6 +211,60 @@
 
       <div class="w-100"><hr /></div>
 
+      <h2>Collision Handler</h2>
+
+      <p>
+        What's a Collision Handler?
+      </p>
+
+      <p>
+        When two objects collide, like a boomerang and a wall, somebody needs 
+        to take care of it! Or else the boomerange would just fly straight through the wall. 
+        That's the Collision Handler's job: to take care of things when objects hit each other.
+      </p>
+
+      <figure>
+        <img
+          class="card-img-top"
+          src="../../img/collision_handling_demo.gif"
+          alt="Boomerang colliding with wall gif"
+          draggable="false"
+        />
+      </figure>
+
+      <p>
+        I really just wanted to show off the snippet of code below.
+      </p>
+
+      <figure>
+        <img
+          class="card-img-top"
+          src="../../img/collision_handler_code.png"
+          alt="Collision handler code snippet"
+          draggable="false"
+        />
+      </figure>
+
+      <p>
+        This is the main loop for the Collision Handler system. I am very proud of how simple it is! I employed the 
+        <a href="https://en.wikipedia.org/wiki/Command_pattern" target="_blank" rel="noopener noreferrer"><strong>Command Pattern</strong></a> 
+        to make this system robust, modular, and readable!
+      </p>
+
+      <p>
+        The Collision Handler simply iterates over a list of collisions, where each collision contains two colliding objects.
+        Then the Handler simply looks up the types of the objects in a dictionary and executes the command that knows how to handle the collision
+        (in constant time)!
+      </p>
+
+      <p>
+        The advantage is that each command only knows how to handle collisions for a particular pair of object types, making each command very simple (~30 lines of code).
+        This makes debugging and maintaining the codebase a piece of cake. Adding a new type of object to the game only requires updating the dictionary with a couple new commands.
+        The Collision Handler itself doesn't need to be touched!
+      </p>
+
+      <div class="w-100"><hr /></div>
+
       <h2>Portals</h2>
 
       <p>
@@ -231,31 +285,11 @@
         error at corporis voluptatibus assumenda.
       </p>
 
-      <div class="w-100"><hr /></div>
-
-      <h2>Collision Handler</h2>
-
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        autem error quod perspiciatis in totam asperiores inventore ipsum quo.
-        Eligendi provident repellat, nulla fugit quia reiciendis ipsa. Eligendi
-        sapiente facere asperiores? Veniam enim consectetur maiores modi
-        cupiditate maxime accusamus dolor, nesciunt aspernatur eum dignissimos
-        quisquam nihil rem ipsam suscipit tenetur!
-      </p>
-
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla veniam
-        velit minima neque et tempore nihil labore aspernatur architecto id
-        nesciunt fugiat consequuntur sunt exercitationem officiis, expedita odit
-        impedit? Iusto ratione nostrum exercitationem. Nemo temporibus unde
-        eligendi soluta quo nulla repellendus? Dolor enim laboriosam debitis
-        error at corporis voluptatibus assumenda.
-      </p>
     </article>
 
     <footer>
       <p>Copyright &copy; 2021 Hunter Figgs.</p>
     </footer>
+
   </body>
 </html>
