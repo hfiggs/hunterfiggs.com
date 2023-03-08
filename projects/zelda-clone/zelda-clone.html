@@ -91,8 +91,6 @@
     </nav>
 
     <article>
-      <h1>**This page is under construction 👷🏗️🚧**</h1>
-
       <h1>Zelda-Clone</h1>
 
       <figure>
@@ -104,13 +102,15 @@
         />
       </figure>
 
-      <p>
-        Apologies if I clickbaited you! You can't actually play the game here.
-      </p>
+      <div class="w-100"><hr /></div>
+
+      <h2>Intro</h2>
 
       <p>
-        If you so desire, you can compile and run the game yourself:
-        <a href="https://github.com/hfiggs/zelda-clone">GitHub repo!</a>
+        This is a clone of the original NES <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/The_Legend_of_Zelda_(video_game)"><strong>The Legend of Zelda</strong></a>
+        and was built during one semester by a team of five students at OSU, myself included.
+        The game was built on MonoGame and C# from the ground-up, and was used as a learning
+        tool to mature our software development skills.
       </p>
 
       <p>
@@ -119,34 +119,26 @@
         <code>&#60;code&#62;</code>.
       </p>
 
-      <div class="w-100"><hr /></div>
-
-      <h2>Intro</h2>
-
       <p>
-        This is a clone of the original Zelda and was built during one semester
-        by a team of five students at OSU, myself included. The game was built
-        on MonoGame and C# from the ground-up, and was used as a learning tool
-        to mature our software development skills.
+        You can find the <a target="_blank" rel="noopener noreferrer" href="https://github.com/hfiggs/zelda-clone">source code on GitHub</a> and compile the game yourself with Visual Studio.
       </p>
 
       <div class="w-100"><hr /></div>
 
-      <h2>Raycasting</h2>
+      <h2>Ray casting</h2>
 
       <p>
-        During the last week of the project, I researched the topic of
-        <a href="https://en.wikipedia.org/wiki/Ray_casting" target="_blank" rel="noopener noreferrer"><strong>Raycasting</strong></a> because I wanted to integrate a fun and
-        interactive lighting system into the drawing steps of the game (just to
-        spice things up).
+        During the final week of the project, we were given the option to implement
+        any interesting "stretch-goal" features. I discovered the concept of
+        <a href="https://en.wikipedia.org/wiki/Ray_casting" target="_blank" rel="noopener noreferrer"><strong>Ray casting</strong></a>
+        and challenged myself to implement a ray casting lighting system.
       </p>
 
       <p>
-        Raycasting, in simple terms, is a rendering technique where rays (lines)
-        are traced from a particular point outwards, to see what they intersect
-        with. For my lighting system, Link is the source point, and the rays are
-        truncated where they first intersect with the environment (i.e. walls,
-        blocks).
+        In simple terms, ray casting is a rendering technique where lines
+        are traced outward from a source point until they intersect with something.
+        For my lighting system, Link is the source point, and the light rays stop
+        wherever they first intersect with the environment (i.e. walls, blocks).
       </p>
 
       <p>
@@ -157,14 +149,14 @@
       <div id="raycastingSketch1"></div>
 
       <p>
-        In the demo above, a set number of rays are drawn radially from the
-        center. This is fine just for learning, but it doesn't provide enough
-        detail to be convincing. Sometimes the rays don't make it into every
+        A fixed number of rays are drawn radially from the
+        center. This is fine for learning, but it doesn't provide enough
+        detail to be a convincing light source. Sometimes the rays don't make it into every
         nook and cranny that a real light would.
       </p>
 
       <p>
-        So you might think: "Hey! Just increase the number of rays to get more
+        So, you might think: "Just increase the number of rays to get more
         detail." And this does work pretty well:
       </p>
 
@@ -206,20 +198,92 @@
           />
         </figure>
 
-        <p>Ta-da! It's magic... err... not really, just a lot of work.</p>
+        <p>Ta-da! It's magic... err... not really, just some engineering!</p>
       </p>
+
+      <div class="w-100"><hr /></div>
+
+      <h2>Portals</h2>
+
+      <p>
+        I got ambitious during that final week of the project and decided
+        to do a <em>second</em> stretch-goal: portals! One of my all-time favorite game
+        series is <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Portal_(series)"><strong>Portal</strong></a>,
+        which is a must-play puzzle game if you enjoy mixing critical thinking into your gaming.
+      </p>
+
+      <p>
+        Implementing this feature wasn't very technically challenging, but the fact that I shipped it
+        in the last couple days before the deadline is a testament to the extensibility of our
+        codebase. Much effort went into writing software that was as maintainable as possible.
+      </p>
+
+      <p>
+        If you have never played <em>Portal</em>, there are special tiles that you can shoot with your
+        <a target="_blank" rel="noopener noreferrer" href="https://theportalwiki.com/wiki/Handheld_Portal_Device"><strong>Handheld Portal Device</strong></a>
+        to place blue and orange portals. Once both colors are placed, anything that goes into one comes out the other, or, as stated in the game,
+        <a target="_blank" rel="noopener noreferrer" href="https://youtube.com/clip/Ugkx0bhdAWPFfWL4HrMd9rNK48zEObCn5iQV">"Speedy thing goes in, speedy thing comes out"</a>.
+      </p>
+
+      <p>
+        This simple portal mechanic instantly lends to tons of new puzzles. For instance, crossing a gap you otherwise couldn't...
+      </p>
+
+      <figure>
+        <img
+          class="card-img-top"
+          src="../../img/zelda-clone_portal_gap.gif"
+          alt="Raycasting Demo Gif"
+          draggable="false"
+        />
+      </figure>
+
+      <p>
+        ...shooting objects where you can't reach...
+      </p>
+
+      <figure>
+        <img
+          class="card-img-top"
+          src="../../img/zelda-clone_portal_arrow.gif"
+          alt="Raycasting Demo Gif"
+          draggable="false"
+        />
+      </figure>
+
+      <p>
+        ...retreiving inaccessible items...
+      </p>
+
+      <figure>
+        <img
+          class="card-img-top"
+          src="../../img/zelda-clone_portal_puzzle.gif"
+          alt="Raycasting Demo Gif"
+          draggable="false"
+        />
+      </figure>
+
+      <p>
+        ...or even creating unintentional <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Emergent_gameplay"><strong>Emergent Gameplay</strong></a>.
+      </p>
+
+      <figure>
+        <img
+          class="card-img-top"
+          src="../../img/zelda-clone_portal_boomarang.gif"
+          alt="Raycasting Demo Gif"
+          draggable="false"
+        />
+      </figure>
 
       <div class="w-100"><hr /></div>
 
       <h2>Collision Handler</h2>
 
       <p>
-        What's a Collision Handler?
-      </p>
-
-      <p>
-        When two objects collide, like a boomerang and a wall, somebody needs 
-        to take care of it! Or else the boomerange would just fly straight through the wall. 
+        When two objects collide -- like a boomerang into a wall -- something needs
+        to take care of the event! Or else the boomerange would just fly straight through the wall.
         That's the Collision Handler's job: to take care of things when objects hit each other.
       </p>
 
@@ -233,7 +297,9 @@
       </figure>
 
       <p>
-        I really just wanted to show off the snippet of code below.
+        Below is the main loop for the Collision Handler system. I really just wanted to show off the snippet of code.
+        I am proud of how simple it is. I employed the <a href="https://en.wikipedia.org/wiki/Command_pattern" target="_blank" rel="noopener noreferrer"><strong>Command Pattern</strong></a>
+        to make this system robust, modular, and readable!
       </p>
 
       <figure>
@@ -246,43 +312,15 @@
       </figure>
 
       <p>
-        This is the main loop for the Collision Handler system. I am very proud of how simple it is! I employed the 
-        <a href="https://en.wikipedia.org/wiki/Command_pattern" target="_blank" rel="noopener noreferrer"><strong>Command Pattern</strong></a> 
-        to make this system robust, modular, and readable!
-      </p>
-
-      <p>
         The Collision Handler simply iterates over a list of collisions, where each collision contains two colliding objects.
-        Then the Handler simply looks up the types of the objects in a dictionary and executes the command that knows how to handle the collision
-        (in constant time)!
+        Then the Handler simply looks up the types of the objects in a dictionary (in constant time) and executes the command
+        that knows how to handle the collision!
       </p>
 
       <p>
         The advantage is that each command only knows how to handle collisions for a particular pair of object types, making each command very simple (~30 lines of code).
         This makes debugging and maintaining the codebase a piece of cake. Adding a new type of object to the game only requires updating the dictionary with a couple new commands.
         The Collision Handler itself doesn't need to be touched!
-      </p>
-
-      <div class="w-100"><hr /></div>
-
-      <h2>Portals</h2>
-
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        autem error quod perspiciatis in totam asperiores inventore ipsum quo.
-        Eligendi provident repellat, nulla fugit quia reiciendis ipsa. Eligendi
-        sapiente facere asperiores? Veniam enim consectetur maiores modi
-        cupiditate maxime accusamus dolor, nesciunt aspernatur eum dignissimos
-        quisquam nihil rem ipsam suscipit tenetur!
-      </p>
-
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla veniam
-        velit minima neque et tempore nihil labore aspernatur architecto id
-        nesciunt fugiat consequuntur sunt exercitationem officiis, expedita odit
-        impedit? Iusto ratione nostrum exercitationem. Nemo temporibus unde
-        eligendi soluta quo nulla repellendus? Dolor enim laboriosam debitis
-        error at corporis voluptatibus assumenda.
       </p>
 
     </article>
