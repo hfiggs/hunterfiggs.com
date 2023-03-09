@@ -9,9 +9,9 @@ const sk = (rayCount) => (sketch) => {
   sketch.setup = () => {
     let canvas = sketch.createCanvas(400, 400);
     let canvas_dom = document.getElementById(canvas.canvas.id)
-    canvas_dom.addEventListener("touchstart",  function(event) {event.preventDefault(); sketch.mousePressed();}, { passive: false})
+    canvas_dom.addEventListener("touchstart",  function(event) {event.preventDefault()}, { passive: false})
     canvas_dom.addEventListener("touchmove",   function(event) {event.preventDefault()}, { passive: false})
-    canvas_dom.addEventListener("touchend",    function(event) {event.preventDefault(); sketch.mouseReleased();}, { passive: false})
+    canvas_dom.addEventListener("touchend",    function(event) {event.preventDefault()}, { passive: false})
     canvas_dom.addEventListener("touchcancel", function(event) {event.preventDefault()}, { passive: false})
 
     width = sketch.width;
