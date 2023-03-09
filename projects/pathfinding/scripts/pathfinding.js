@@ -2,6 +2,11 @@ pathfinding = function(){
 
 // html board
 var board = $('#board')[0];
+var boardChanged = false;
+
+// state vars
+var lastMouseEnterId = null;
+var shouldDrawPath = true;
 
 // board dimensions
 var cols = 50;
@@ -30,6 +35,11 @@ $(document).ready(function()
     $(document).mouseup(function()
     {
         mouseDown = false;
+        if (boardChanged)
+        {
+            boardChanged = false;
+            triggerPathFind();
+        }
     });
 
     $("td").mousedown(function()
@@ -42,6 +52,7 @@ $(document).ready(function()
         }
         else
         {
+            stopPathFind();
             if ($(this).hasClass('wall'))
             {
                 $(this).removeClass('wall');
@@ -52,43 +63,62 @@ $(document).ready(function()
                 $(this).removeClass();
                 $(this).addClass('wall');
             }
-            triggerPathFind();
-        }       
+            boardChanged = true;
+        }
     });
 
     $("td").mouseup(function()
     {
         mouseDown = false;
-
+        if (boardChanged)
+        {
+            boardChanged = false;
+            triggerPathFind();
+        }
     });
 
     $("td").mouseenter(function()
     {
-        if(mouseDown)
+        if (lastMouseEnterId !== $(this).attr("id"))
         {
-            if($(this).hasClass('start')||$(this).hasClass('finish'))
+            lastMouseEnterId = $(this).attr("id")
+            if(mouseDown)
             {
-                // do nothing (for now)
-            }
-            else 
-            {
-                if ($(this).hasClass('wall'))
+                if($(this).hasClass('start')||$(this).hasClass('finish'))
                 {
-                    $(this).removeClass('wall');
-                    $(this).addClass('unseen');
+                    // do nothing (for now)
                 }
                 else
                 {
-                    $(this).removeClass();
-                    $(this).addClass('wall');
+                    stopPathFind();
+                    if ($(this).hasClass('wall'))
+                    {
+                        $(this).removeClass('wall');
+                        $(this).addClass('unseen');
+                    }
+                    else
+                    {
+                        $(this).removeClass();
+                        $(this).addClass('wall');
+                    }
+                    boardChanged = true;
                 }
-                triggerPathFind();
             }
         }
     });
 
     triggerPathFind();
 });
+
+function stopPathFind()
+{
+    shouldDrawPath = false;
+    // If browser supports workers
+    if(window.Worker)
+    {
+        worker.terminate();
+    }
+}
 
 function triggerPathFind()
 {
@@ -148,6 +178,7 @@ function triggerPathFind()
             // finished
             case 2:
                 worker.terminate();
+                shouldDrawPath = true;
                 drawPath(e.data[1]);
                 break;
             default:
@@ -205,7 +236,7 @@ async function drawPath(parent)
 
     let cellNum = parent[finishNode];
 
-    while(parent[cellNum]!=-1)
+    while(parent[cellNum]!=-1 && shouldDrawPath)
     {
         let r = Math.floor(cellNum/cols);
         let c = cellNum % cols;
