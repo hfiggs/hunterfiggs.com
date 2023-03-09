@@ -35,6 +35,25 @@ class Particle {
     if (this.held) {
       this.pos.x = this.sketch.mouseX;
       this.pos.y = this.sketch.mouseY;
+
+      // Prevent particle from leaving canvas
+      if (this.pos.x < 15)
+      {
+        this.pos.x = 15;
+      }
+      else if (this.pos.x > (this.sketch.width - 15))
+      {
+        this.pos.x = this.sketch.width - 15;
+      }
+
+      if (this.pos.y < 15)
+      {
+        this.pos.y = 15;
+      }
+      else if (this.pos.y > (this.sketch.height - 15))
+      {
+        this.pos.y = this.sketch.height - 15;
+      }
     }
   }
 
