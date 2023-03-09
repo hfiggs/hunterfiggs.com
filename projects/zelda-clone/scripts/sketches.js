@@ -7,7 +7,12 @@ const sk = (rayCount) => (sketch) => {
   let height;
 
   sketch.setup = () => {
-    sketch.createCanvas(400, 400);
+    let canvas = sketch.createCanvas(400, 400);
+    let canvas_dom = document.getElementById(canvas.canvas.id)
+    canvas_dom.addEventListener("touchstart",  function(event) {event.preventDefault(); sketch.mousePressed();}, { passive: false})
+    canvas_dom.addEventListener("touchmove",   function(event) {event.preventDefault()}, { passive: false})
+    canvas_dom.addEventListener("touchend",    function(event) {event.preventDefault(); sketch.mouseReleased();}, { passive: false})
+    canvas_dom.addEventListener("touchcancel", function(event) {event.preventDefault()}, { passive: false})
 
     width = sketch.width;
     height = sketch.height;
@@ -66,6 +71,21 @@ const sk = (rayCount) => (sketch) => {
       particle.setHeld(false);
     }
   };
+
+  // Handle touchscreen press
+  sketch.touchStarted = () => {
+    for (let particle of particles) {
+      particle.checkHeld();
+    }
+  }
+
+  // Handle touchscreen release
+  sketch.touchEnded = () => {
+    for (let particle of particles) {
+      particle.setHeld(false);
+    }
+  }
+
 };
 
 const rayCount1 = 20;
