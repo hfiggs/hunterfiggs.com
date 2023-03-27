@@ -3,41 +3,18 @@ const sk = (rayCount) => (sketch) => {
   //let ray;
   let particles = [];
 
-  let width;
-  let height;
+  let sketchWindowRatio = 0.5;
 
   sketch.setup = () => {
-    let canvas = sketch.createCanvas(400, 400);
+    let canvas = sketch.createCanvas(100, 100);
+    sketch.windowResized();
     let canvas_dom = document.getElementById(canvas.canvas.id)
     canvas_dom.addEventListener("touchstart",  function(event) {event.preventDefault()}, { passive: false})
     canvas_dom.addEventListener("touchmove",   function(event) {event.preventDefault()}, { passive: false})
     canvas_dom.addEventListener("touchend",    function(event) {event.preventDefault()}, { passive: false})
     canvas_dom.addEventListener("touchcancel", function(event) {event.preventDefault()}, { passive: false})
 
-    width = sketch.width;
-    height = sketch.height;
-
-    // for (let i = 0; i < 5; i++) {
-    //   let x1 = sketch.random(width);
-    //   let y1 = sketch.random(height);
-    //   let x2 = sketch.random(width);
-    //   let y2 = sketch.random(height);
-
-    //   walls[i] = new Boundary(x1, y1, x2, y2, sketch);
-    // }
-
-    walls.push(new Boundary(width/4, width/4, 3/4*width, width/4, sketch));
-    walls.push(new Boundary(width/4, 3/4*width, 3/4*width, 3/4*width, sketch));
-
-    walls.push(new Boundary(width/5, width/4, width/5, 3/4*width, sketch));
-    walls.push(new Boundary(4/5*width, width/4, 4/5*width, 3/4*width, sketch));
-
-    walls.push(new Boundary(0, 0, width, 0, sketch));
-    walls.push(new Boundary(0, 0, 0, height, sketch));
-    walls.push(new Boundary(width, 0, width, height, sketch));
-    walls.push(new Boundary(0, height, width, height, sketch));
-
-    particles.push(new Particle(2/5*width, 52/100*height, rayCount, sketch));
+    sketch.makeWallsAndParticles();
   };
 
   sketch.draw = () => {
@@ -84,6 +61,36 @@ const sk = (rayCount) => (sketch) => {
     for (let particle of particles) {
       particle.setHeld(false);
     }
+  }
+
+  sketch.makeWallsAndParticles = () => {
+    width = sketch.width;
+    height = sketch.height;
+
+    walls = [];
+    particles = [];
+
+    walls.push(new Boundary(width/4, width/4, 3/4*width, width/4, sketch));
+    walls.push(new Boundary(width/4, 3/4*width, 3/4*width, 3/4*width, sketch));
+
+    walls.push(new Boundary(width/5, width/4, width/5, 3/4*width, sketch));
+    walls.push(new Boundary(4/5*width, width/4, 4/5*width, 3/4*width, sketch));
+
+    walls.push(new Boundary(0, 0, width, 0, sketch));
+    walls.push(new Boundary(0, 0, 0, height, sketch));
+    walls.push(new Boundary(width, 0, width, height, sketch));
+    walls.push(new Boundary(0, height, width, height, sketch));
+
+    particles.push(new Particle(2/5*width, 52/100*height, rayCount, sketch));
+  }
+
+  sketch.windowResized = () => {
+    width = Math.min(window.innerWidth, window.innerHeight)*sketchWindowRatio;
+    height = width;
+
+    sketch.resizeCanvas(width, height);
+
+    sketch.makeWallsAndParticles();
   }
 
 };
