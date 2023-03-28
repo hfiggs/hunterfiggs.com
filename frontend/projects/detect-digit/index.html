@@ -98,21 +98,27 @@
       </div>
       <div class="row justify-content-center">
         <div class="col my-2">
-            <form
+          <!-- <form
+            id="form"
             action="//api.hunterfiggs.com/predict-digit/"
             enctype="multipart/form-data"
             method="post"
             onsubmit="copyCanvasToFormImage()"
           >
-            <input type="hidden" id="formImage" name="file" />
-            <input type="submit" class="btn btn-dark float-end"/>
-          </form>
-          <button class="btn btn-dark float-end mx-2" onclick="clearCanvases()">Clear</button>
+            <input type="file" id="formImage" name="file" />
+            <input type="submit" class="btn btn-dark float-end" />
+          </form> -->
+          <button class="btn btn-dark float-end mx-2" onclick="sumbitCanvasImage()">
+            Submit
+          </button>
+          <button class="btn btn-dark float-end mx-2" onclick="clearCanvases()">
+            Clear
+          </button>
         </div>
         <div class="col"></div>
-    </body>
       </div>
     </div>
+  </body>
 
   <footer>
     <p>Copyright &copy; 2023 Hunter Figgs.</p>

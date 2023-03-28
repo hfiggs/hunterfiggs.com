@@ -2,7 +2,6 @@ var drawCanvas = document.getElementById("drawCanvas");
 var drawContext = drawCanvas.getContext("2d");
 var resultCanvas = document.getElementById("resultCanvas");
 var resultContext = resultCanvas.getContext("2d");
-var formImage = document.getElementById("formImage");
 
 drawCanvas.addEventListener("mousemove", onMouseMove, false);
 
@@ -36,11 +35,31 @@ function drawCircle(context, x, y, radius) {
   context.fill();
 }
 
-function copyCanvasToFormImage() {
-  formImage.value = drawCanvas.toDataURL();
+function sumbitCanvasImage() {
+  var formData = new FormData();
+  var file = dataURLtoFile(drawCanvas.toDataURL("image/png"), "number.png");
+  formData.append("file", file, 'number.png');
+  
+  var request = new XMLHttpRequest();
+  request.open("POST", "//api.hunterfiggs.com/predict-digit/");
+  request.send(formData);
 }
 
 function clearCanvases() {
   drawContext.clearRect(0, 0, drawCanvas.clientWidth, drawCanvas.height);
   resultContext.clearRect(0, 0, resultCanvas.clientWidth, resultCanvas.height);
+}
+
+function dataURLtoFile(dataurl, filename) {
+  var arr = dataurl.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+
+  return new File([u8arr], filename, { type: mime });
 }
