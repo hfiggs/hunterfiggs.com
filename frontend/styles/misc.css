@@ -1,0 +1,28 @@
+.pixelated {
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+.centered-ascii {
+  color: black;
+  font-size: 3.5em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.divider {
+  position: relative;
+  width: 100%;
+  height: 5%;
+  top: 0;
+  left: 0;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  color: white;
+}
