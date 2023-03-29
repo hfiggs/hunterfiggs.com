@@ -3,7 +3,7 @@ import math
 import cv2 # type: ignore
 import numpy as np
 
-from app.mnist_tools.config import MNIST_IMAGE_SIZE, MNIST_IMAGE_BORDER_SIZE, MNIST_IMAGE_BORDER_VALUE, MNIST_IMAGE_WITH_BORDER_SIZE, MNIST_IMAGE_WITH_BORDER_AREA # type: ignore
+from .config import MNIST_IMAGE_SIZE, MNIST_IMAGE_BORDER_SIZE, MNIST_IMAGE_BORDER_VALUE, MNIST_IMAGE_WITH_BORDER_SIZE, MNIST_IMAGE_WITH_BORDER_AREA # type: ignore
 
 def preprocess(img: cv2.Mat) -> cv2.Mat:
     # If image dimensions are invalid, return empty image of correct size

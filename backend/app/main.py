@@ -4,11 +4,11 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 
-import app.mnist_tools.model
+from .mnist_tools.model import MnistModel
 
-_model = app.mnist_tools.model.MnistModel()
+model = MnistModel()
 
-_app = FastAPI()
+app = FastAPI()
 
 origins = [
     "https://www.hunterfiggs.com",
@@ -17,7 +17,7 @@ origins = [
     "http://localhost:8000",
 ]
 
-_app.add_middleware(
+app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
@@ -25,7 +25,7 @@ _app.add_middleware(
     allow_headers=["*"],
 )
 
-@_app.get("/")
+@app.get("/")
 async def main():
     content = """
 <body>
@@ -37,10 +37,10 @@ async def main():
     """
     return HTMLResponse(content=content)
 
-@_app.post("/predict-digit/")
+@app.post("/predict-digit/")
 async def predict_digit(file: UploadFile):
     img_raw = await file.read()
     img_buf = np.asarray(bytearray(img_raw), dtype="uint8")
     img = cv2.imdecode(img_buf, cv2.IMREAD_UNCHANGED)
 
-    return {"probs": _model.predict_probs(img)}
+    return {"probs": model.predict_probs(img)}
