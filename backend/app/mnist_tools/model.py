@@ -5,9 +5,9 @@ import cv2 # type: ignore
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier # type: ignore
 
-from app.mnist_tools.config import MNIST_IMAGE_WITH_BORDER_AREA # type: ignore
-import app.mnist_tools.image # type: ignore
-import app.mnist_tools.loader # type: ignore
+from app.mnist_tools.config import MNIST_IMAGE_WITH_BORDER_AREA
+import app.mnist_tools.image
+import app.mnist_tools.loader
 
 _BIN_PATH = 'app.mnist_tools.bin'
 _MODEL_BIN_FILE_NAME = 'knn_model_bin.pkl'
