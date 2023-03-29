@@ -78,6 +78,7 @@
           <h1>D3T3CT D1G1T</h1>
         </div>
       </div>
+
       <div class="row justify-content-center">
         <div class="col-auto">
           <canvas
@@ -96,19 +97,13 @@
           ></canvas>
         </div>
       </div>
+
       <div class="row justify-content-center">
         <div class="col my-2">
-          <!-- <form
-            id="form"
-            action="//api.hunterfiggs.com/predict-digit/"
-            enctype="multipart/form-data"
-            method="post"
-            onsubmit="copyCanvasToFormImage()"
+          <button
+            class="btn btn-dark float-end mx-2"
+            onclick="sumbitCanvasImage()"
           >
-            <input type="file" id="formImage" name="file" />
-            <input type="submit" class="btn btn-dark float-end" />
-          </form> -->
-          <button class="btn btn-dark float-end mx-2" onclick="sumbitCanvasImage()">
             Submit
           </button>
           <button class="btn btn-dark float-end mx-2" onclick="clearCanvases()">
