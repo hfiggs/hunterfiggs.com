@@ -17,7 +17,7 @@ function onMouseMove(e) {
   e.stopPropagation();
   if (!mouseDown) return;
   var pos = getMousePos(drawCanvas, e);
-  drawCircle(drawContext, pos.x, pos.y, 8);
+  drawCircle(drawContext, pos.x, pos.y, 12);
 }
 
 function getMousePos(canvas, evt) {
@@ -46,7 +46,9 @@ function sumbitCanvasImage() {
 }
 
 function clearCanvases() {
-  drawContext.clearRect(0, 0, drawCanvas.clientWidth, drawCanvas.height);
+  drawContext.fillStyle = "white";
+  drawContext.fillRect(0, 0, drawCanvas.clientWidth, drawCanvas.height);
+  resultContext.fillStyle = "white";
   resultContext.clearRect(0, 0, resultCanvas.clientWidth, resultCanvas.height);
 }
 
@@ -63,3 +65,5 @@ function dataURLtoFile(dataurl, filename) {
 
   return new File([u8arr], filename, { type: mime });
 }
+
+clearCanvases();
