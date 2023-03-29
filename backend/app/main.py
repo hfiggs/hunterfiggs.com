@@ -1,6 +1,7 @@
 import cv2 # type: ignore
 from fastapi import FastAPI, UploadFile
 from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 
 import app.mnist_tools.model # type: ignore
@@ -8,6 +9,21 @@ import app.mnist_tools.model # type: ignore
 model = app.mnist_tools.model.MnistModel()
 
 app = FastAPI()
+
+origins = [
+    "https://www.hunterfiggs.com",
+    "http://localhost",
+    "http://localhost:5500",
+    "http://localhost:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def main():
