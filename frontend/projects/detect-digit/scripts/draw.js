@@ -43,6 +43,15 @@ function onMouseUp(e) {
 
 // Handle TOUCH interactions
 
+/*
+Touch handling code adapted from MDN web docs example:
+https://developer.mozilla.org/en-US/docs/Web/API/Touch_events#example
+
+According to the following page, code samples added after 2010/08/20
+are in the public domain:
+https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license#code_samples
+*/
+
 var drawCanvasX; // Relative to viewport
 var drawCanvasY; // Relative to viewport
 var currentTouches = [];
