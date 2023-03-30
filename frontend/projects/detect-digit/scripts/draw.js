@@ -9,7 +9,7 @@ var isMouseDown = false;
 
 const CANVAS_BACKGROUND_FILL_STYLE = "white";
 const DRAW_STROKE_STYLE = "black";
-const DRAW_LINE_JOIN = "round"
+const DRAW_LINE_JOIN = "round";
 const DRAW_LINE_WIDTH = 14;
 
 // Handle MOUSE interactions
@@ -67,11 +67,19 @@ function onTouchMove(e) {
   if (e.cancelable) e.preventDefault();
 
   for (let i = 0; i < e.changedTouches.length; i++) {
-
-    let touchIdx = currentTouchIndexById(currentTouches, e.changedTouches[i].identifier);
+    let touchIdx = currentTouchIndexById(
+      currentTouches,
+      e.changedTouches[i].identifier
+    );
 
     if (touchIdx >= 0) {
-      drawLine(drawContext, currentTouches[touchIdx].clientX - drawCanvasX, currentTouches[touchIdx].clientY - drawCanvasY, e.changedTouches[i].clientX - drawCanvasX, e.changedTouches[i].clientY - drawCanvasY);
+      drawLine(
+        drawContext,
+        currentTouches[touchIdx].clientX - drawCanvasX,
+        currentTouches[touchIdx].clientY - drawCanvasY,
+        e.changedTouches[i].clientX - drawCanvasX,
+        e.changedTouches[i].clientY - drawCanvasY
+      );
       currentTouches.splice(touchIdx, 1, copyTouch(e.changedTouches[i])); // replace with latest touch
     }
   }
@@ -81,8 +89,10 @@ function onTouchEnd(e) {
   if (e.cancelable) e.preventDefault();
 
   for (let i = 0; i < e.changedTouches.length; i++) {
-
-    let touchIdx = currentTouchIndexById(currentTouches, e.changedTouches[i].identifier);
+    let touchIdx = currentTouchIndexById(
+      currentTouches,
+      e.changedTouches[i].identifier
+    );
 
     if (touchIdx >= 0) {
       currentTouches.splice(touchIdx, 1);
