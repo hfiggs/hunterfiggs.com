@@ -41,7 +41,13 @@ function sumbitCanvasImage() {
   formData.append("file", file, 'number.png');
   
   var request = new XMLHttpRequest();
-  request.open("POST", "//api.hunterfiggs.com/predict-digit/");
+
+  if (window.location.hostname === "localhost") {
+    request.open("POST", "//localhost:80/predict-digit/");
+  } else {
+    request.open("POST", "//api.hunterfiggs.com/predict-digit/");
+  }
+
   request.send(formData);
 }
 
