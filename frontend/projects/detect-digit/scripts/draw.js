@@ -3,8 +3,8 @@ var drawContext = drawCanvas.getContext("2d");
 var resultCanvas = document.getElementById("resultCanvas");
 var resultContext = resultCanvas.getContext("2d");
 
-var x = 0;
-var y = 0;
+var lastMouseX = 0;
+var lastMouseY = 0;
 var isMouseDown = false;
 
 const CANVAS_BACKGROUND_FILL_STYLE = "white";
@@ -20,24 +20,24 @@ drawCanvas.addEventListener("mouseup", onMouseUp);
 
 function onMouseDown(e) {
   isMouseDown = true;
-  x = e.offsetX;
-  y = e.offsetY;
+  lastMouseX = e.offsetX;
+  lastMouseY = e.offsetY;
 }
 
 function onMouseMove(e) {
   if (isMouseDown) {
-    drawLine(drawContext, x, y, e.offsetX, e.offsetY);
-    x = e.offsetX;
-    y = e.offsetY;
+    drawLine(drawContext, lastMouseX, lastMouseY, e.offsetX, e.offsetY);
+    lastMouseX = e.offsetX;
+    lastMouseY = e.offsetY;
   }
 }
 
 function onMouseUp(e) {
   if (isMouseDown) {
     isMouseDown = false;
-    drawLine(drawContext, x, y, e.offsetX, e.offsetY);
-    x = 0;
-    y = 0;
+    drawLine(drawContext, lastMouseX, lastMouseY, e.offsetX, e.offsetY);
+    lastMouseX = 0;
+    lastMouseY = 0;
   }
 }
 
