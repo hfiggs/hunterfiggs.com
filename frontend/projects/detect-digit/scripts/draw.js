@@ -3,43 +3,67 @@ var drawContext = drawCanvas.getContext("2d");
 var resultCanvas = document.getElementById("resultCanvas");
 var resultContext = resultCanvas.getContext("2d");
 
-drawCanvas.addEventListener("mousemove", onMouseMove, false);
+var x = 0;
+var y = 0;
+var offsetX;
+var offsetY;
+var isMouseDown = false;
 
-var mouseDown = false;
+const CANVAS_BACKGROUND_FILL_STYLE = "white";
+const DRAW_STROKE_STYLE = "black";
+const DRAW_LINE_JOIN = "round"
+const DRAW_LINE_WIDTH = 14;
 
-function setMouseDown(e) {
-  var flags = e.buttons !== undefined ? e.buttons : e.which;
-  mouseDown = (flags & 1) === 1;
+drawCanvas.addEventListener("mousedown", onMouseDown);
+drawCanvas.addEventListener("mousemove", onMouseMove);
+drawCanvas.addEventListener("mouseup", onMouseUp);
+
+function onMouseDown(e) {
+  isMouseDown = true;
+  x = e.offsetX;
+  y = e.offsetY;
 }
 
 function onMouseMove(e) {
-  setMouseDown(e);
-  e.stopPropagation();
-  if (!mouseDown) return;
-  var pos = getMousePos(drawCanvas, e);
-  drawCircle(drawContext, pos.x, pos.y, 12);
+  if (isMouseDown) {
+    drawLine(drawContext, x, y, e.offsetX, e.offsetY);
+    x = e.offsetX;
+    y = e.offsetY;
+  }
 }
 
-function getMousePos(canvas, evt) {
-  var rect = canvas.getBoundingClientRect();
-  return {
-    x: evt.clientX - rect.left,
-    y: evt.clientY - rect.top,
-  };
+function onMouseUp(e) {
+  if (isMouseDown) {
+    isMouseDown = false;
+    drawLine(drawContext, x, y, e.offsetX, e.offsetY);
+    x = 0;
+    y = 0;
+  }
 }
 
-function drawCircle(context, x, y, radius) {
+function drawLine(context, x1, y1, x2, y2) {
   context.beginPath();
-  context.arc(x, y, radius, 0, 2 * Math.PI, false);
-  context.fillStyle = "black";
-  context.fill();
+  context.strokeStyle = DRAW_STROKE_STYLE;
+  context.lineWidth = DRAW_LINE_WIDTH;
+  context.lineJoin = DRAW_LINE_JOIN;
+  context.moveTo(x1, y1);
+  context.lineTo(x2, y2);
+  context.closePath();
+  context.stroke();
+}
+
+function clearCanvases() {
+  drawContext.fillStyle = CANVAS_BACKGROUND_FILL_STYLE;
+  drawContext.fillRect(0, 0, drawCanvas.clientWidth, drawCanvas.height);
+  resultContext.fillStyle = CANVAS_BACKGROUND_FILL_STYLE;
+  resultContext.clearRect(0, 0, resultCanvas.clientWidth, resultCanvas.height);
 }
 
 function sumbitCanvasImage() {
   var formData = new FormData();
   var file = dataURLtoFile(drawCanvas.toDataURL("image/png"), "number.png");
-  formData.append("file", file, 'number.png');
-  
+  formData.append("file", file, "number.png");
+
   var request = new XMLHttpRequest();
 
   if (window.location.hostname === "localhost") {
@@ -49,13 +73,6 @@ function sumbitCanvasImage() {
   }
 
   request.send(formData);
-}
-
-function clearCanvases() {
-  drawContext.fillStyle = "white";
-  drawContext.fillRect(0, 0, drawCanvas.clientWidth, drawCanvas.height);
-  resultContext.fillStyle = "white";
-  resultContext.clearRect(0, 0, resultCanvas.clientWidth, resultCanvas.height);
 }
 
 function dataURLtoFile(dataurl, filename) {
