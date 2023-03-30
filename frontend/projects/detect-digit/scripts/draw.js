@@ -119,6 +119,8 @@ function currentTouchIndexById(currentTouches, idToFind) {
   return -1; // id not found
 }
 
+// Helper functions for manipulating canvases
+
 function drawLine(context, x1, y1, x2, y2) {
   context.beginPath();
   context.strokeStyle = DRAW_STROKE_STYLE;
@@ -136,6 +138,8 @@ function clearCanvases() {
   resultContext.fillStyle = CANVAS_BACKGROUND_FILL_STYLE;
   resultContext.clearRect(0, 0, resultCanvas.clientWidth, resultCanvas.height);
 }
+
+// Helper functions for interacting with API
 
 function sumbitCanvasImage() {
   var formData = new FormData();
