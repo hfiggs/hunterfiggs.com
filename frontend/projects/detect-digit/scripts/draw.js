@@ -8,6 +8,10 @@ var lastMouseY = 0;
 var isMouseDown = false;
 
 const CANVAS_BACKGROUND_FILL_STYLE = "white";
+const CANVAS_TEXT_FONT = "150px Courier New";
+const CANVAS_TEXT_FILL_STYLE = "black";
+const CANVAS_TEXT_ALIGN = "center";
+const CANVAS_TEXT_BASELINE = "middle";
 const DRAW_STROKE_STYLE = "black";
 const DRAW_LINE_JOIN = "round";
 const DRAW_LINE_WIDTH = 14;
@@ -17,6 +21,8 @@ const DRAW_LINE_WIDTH = 14;
 drawCanvas.addEventListener("mousedown", onMouseDown);
 drawCanvas.addEventListener("mousemove", onMouseMove);
 drawCanvas.addEventListener("mouseup", onMouseUp);
+
+clearCanvases();
 
 function onMouseDown(e) {
   isMouseDown = true;
@@ -142,10 +148,51 @@ function drawLine(context, x1, y1, x2, y2) {
 }
 
 function clearCanvases() {
-  drawContext.fillStyle = CANVAS_BACKGROUND_FILL_STYLE;
-  drawContext.fillRect(0, 0, drawCanvas.clientWidth, drawCanvas.height);
-  resultContext.fillStyle = CANVAS_BACKGROUND_FILL_STYLE;
-  resultContext.clearRect(0, 0, resultCanvas.clientWidth, resultCanvas.height);
+  clearCanvas(drawContext, drawCanvas);
+  clearCanvas(resultContext, resultCanvas);
+}
+
+function clearCanvas(context, canvas) {
+  context.fillStyle = CANVAS_BACKGROUND_FILL_STYLE;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawResult(response) {
+  if (!Object.hasOwn(response, "probs")) {
+    console.error("Response is missing key 'probs'");
+    return;
+  }
+
+  let probs = response["probs"];
+
+  let maxProb = 0;
+  let maxProbDigitStr = "";
+
+  for (let i = 0; i <= 9; i++) {
+    if (!Object.hasOwn(probs, i.toString())) {
+      console.error("Response is missing key '" + i + "'");
+      return;
+    }
+
+    let currProb = probs[i.toString()];
+
+    if (currProb > maxProb) {
+      maxProb = currProb;
+      maxProbDigitStr = i.toString();
+    }
+  }
+
+  if (maxProbDigitStr === "") {
+    console.error("Response probabilities are all 0");
+    return;
+  }
+
+  clearCanvas(resultContext, resultCanvas);
+  resultContext.font = CANVAS_TEXT_FONT;
+  resultContext.fillStyle = CANVAS_TEXT_FILL_STYLE;
+  resultContext.textAlign = CANVAS_TEXT_ALIGN;
+  resultContext.textBaseline = CANVAS_TEXT_BASELINE;
+  resultContext.fillText(maxProbDigitStr, resultCanvas.width/2, resultCanvas.height/2);
 }
 
 // Helper functions for interacting with API
@@ -158,9 +205,17 @@ function sumbitCanvasImage() {
   var request = new XMLHttpRequest();
 
   if (window.location.hostname === "localhost") {
-    request.open("POST", "//localhost:80/predict-digit/");
+    request.open("POST", "//localhost:80/predict-digit/", true);
   } else {
-    request.open("POST", "//api.hunterfiggs.com/predict-digit/");
+    request.open("POST", "//api.hunterfiggs.com/predict-digit/", true);
+  }
+
+  request.responseType = "json";
+
+  request.onreadystatechange = () => {
+    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+      drawResult(request.response);
+    }
   }
 
   request.send(formData);
@@ -179,5 +234,3 @@ function dataURLtoFile(dataurl, filename) {
 
   return new File([u8arr], filename, { type: mime });
 }
-
-clearCanvases();
