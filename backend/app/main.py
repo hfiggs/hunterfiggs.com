@@ -26,10 +26,14 @@ app.add_middleware(
 )
 
 @app.get("/")
-async def main():
+async def root():
+    return {"message": "Hello World"}
+
+@app.get("/predict-digit")
+async def get_predict_digit():
     content = """
 <body>
-<form action="/predict-digit/" enctype="multipart/form-data" method="post">
+<form action="/predict-digit" enctype="multipart/form-data" method="post">
 <input name="file" type="file">
 <input type="submit">
 </form>
