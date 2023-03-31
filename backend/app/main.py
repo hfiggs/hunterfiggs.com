@@ -37,7 +37,7 @@ async def main():
     """
     return HTMLResponse(content=content)
 
-@app.post("/predict-digit/")
+@app.post("/predict-digit")
 async def predict_digit(file: UploadFile):
     img_raw = await file.read()
     img_buf = np.asarray(bytearray(img_raw), dtype="uint8")
@@ -45,6 +45,6 @@ async def predict_digit(file: UploadFile):
 
     return {"probs": model.predict_probs(img)}
 
-@app.head("/wakeup/")
+@app.head("/wakeup")
 async def wakeup():
     return Response()

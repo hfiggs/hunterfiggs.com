@@ -244,9 +244,9 @@ function sumbitCanvasImage() {
   var request = new XMLHttpRequest();
 
   if (window.location.hostname === "localhost") {
-    request.open("POST", "//localhost:80/predict-digit/", true);
+    request.open("POST", "//localhost:80/predict-digit", true);
   } else {
-    request.open("POST", "//api.hunterfiggs.com/predict-digit/", true);
+    request.open("POST", "//api.hunterfiggs.com/predict-digit", true);
   }
 
   request.responseType = "json";
