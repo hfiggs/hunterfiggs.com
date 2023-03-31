@@ -1,6 +1,6 @@
 import cv2 # type: ignore
 from fastapi import FastAPI, UploadFile
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 
@@ -44,3 +44,7 @@ async def predict_digit(file: UploadFile):
     img = cv2.imdecode(img_buf, cv2.IMREAD_UNCHANGED)
 
     return {"probs": model.predict_probs(img)}
+
+@app.head("/wakeup/")
+async def wakeup():
+    return Response()
