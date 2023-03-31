@@ -25,6 +25,7 @@ drawCanvas.addEventListener("mousedown", onMouseDown);
 drawCanvas.addEventListener("mousemove", onMouseMove);
 drawCanvas.addEventListener("mouseup", onMouseUp);
 
+wakeupServer();
 setupCanvases();
 
 function onMouseDown(e) {
@@ -271,4 +272,16 @@ function dataURLtoFile(dataurl, filename) {
   }
 
   return new File([u8arr], filename, { type: mime });
+}
+
+function wakeupServer() {
+  var request = new XMLHttpRequest();
+
+  if (window.location.hostname === "localhost") {
+    request.open("HEAD", "//localhost:80/wakeup", true);
+  } else {
+    request.open("HEAD", "//api.hunterfiggs.com/wakeup", true);
+  }
+
+  request.send();
 }
