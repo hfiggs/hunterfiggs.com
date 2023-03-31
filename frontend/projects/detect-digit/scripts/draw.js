@@ -6,10 +6,13 @@ var resultContext = resultCanvas.getContext("2d");
 var lastMouseX = 0;
 var lastMouseY = 0;
 var isMouseDown = false;
+var isDrawing = false;
 
 const CANVAS_BACKGROUND_FILL_STYLE = "white";
-const CANVAS_TEXT_FONT = "150px Courier New";
-const CANVAS_TEXT_FILL_STYLE = "black";
+const CANVAS_TEXT_FONT_RESULT = "150px Courier New";
+const CANVAS_TEXT_FONT_MESSAGE = "16px Courier New";
+const CANVAS_TEXT_FILL_STYLE_PRIMARY = "black";
+const CANVAS_TEXT_FILL_STYLE_SECONDARY = "gray";
 const CANVAS_TEXT_ALIGN = "center";
 const CANVAS_TEXT_BASELINE = "middle";
 const DRAW_STROKE_STYLE = "black";
@@ -22,9 +25,13 @@ drawCanvas.addEventListener("mousedown", onMouseDown);
 drawCanvas.addEventListener("mousemove", onMouseMove);
 drawCanvas.addEventListener("mouseup", onMouseUp);
 
-clearCanvases();
+setupCanvases();
 
 function onMouseDown(e) {
+  if (!isDrawing) {
+    isDrawing = true;
+    clearCanvas(drawContext, drawCanvas);
+  }
   isMouseDown = true;
   lastMouseX = e.offsetX;
   lastMouseY = e.offsetY;
@@ -69,6 +76,11 @@ drawCanvas.addEventListener("touchcancel", onTouchCancel);
 
 function onTouchStart(e) {
   if (e.cancelable) e.preventDefault();
+
+  if (!isDrawing) {
+    isDrawing = true;
+    clearCanvas(drawContext, drawCanvas);
+  }
 
   drawCanvasX = drawCanvas.getBoundingClientRect().left;
   drawCanvasY = drawCanvas.getBoundingClientRect().top;
@@ -147,7 +159,15 @@ function drawLine(context, x1, y1, x2, y2) {
   context.stroke();
 }
 
+function setupCanvases() {
+  clearCanvases();
+
+  drawCenteredText(drawContext, drawCanvas, CANVAS_TEXT_FONT_MESSAGE, CANVAS_TEXT_FILL_STYLE_SECONDARY, "Draw a digit 0-9\nand press Detect!");
+  drawCenteredText(resultContext, resultCanvas, CANVAS_TEXT_FONT_MESSAGE, CANVAS_TEXT_FILL_STYLE_SECONDARY, "The detected digit\nwill appear here.");
+}
+
 function clearCanvases() {
+  isDrawing = false;
   clearCanvas(drawContext, drawCanvas);
   clearCanvas(resultContext, resultCanvas);
 }
@@ -155,6 +175,20 @@ function clearCanvases() {
 function clearCanvas(context, canvas) {
   context.fillStyle = CANVAS_BACKGROUND_FILL_STYLE;
   context.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawCenteredText(context, canvas, font, fillStyle, text) {
+  context.font = font;
+  context.fillStyle = fillStyle;
+  context.textAlign = CANVAS_TEXT_ALIGN;
+  context.textBaseline = CANVAS_TEXT_BASELINE;
+
+  let lines = splitStringNewline(text);
+  let lineHeight = Number(font.split("px")[0]);
+
+  for (let i = 0; i < lines.length; i++) {
+    context.fillText(lines[i], canvas.width/2, canvas.height/2 + i*lineHeight);
+  }
 }
 
 function drawResult(response) {
@@ -188,11 +222,15 @@ function drawResult(response) {
   }
 
   clearCanvas(resultContext, resultCanvas);
-  resultContext.font = CANVAS_TEXT_FONT;
-  resultContext.fillStyle = CANVAS_TEXT_FILL_STYLE;
+  resultContext.font = CANVAS_TEXT_FONT_RESULT;
+  resultContext.fillStyle = CANVAS_TEXT_FILL_STYLE_PRIMARY;
   resultContext.textAlign = CANVAS_TEXT_ALIGN;
   resultContext.textBaseline = CANVAS_TEXT_BASELINE;
   resultContext.fillText(maxProbDigitStr, resultCanvas.width/2, resultCanvas.height/2);
+}
+
+function splitStringNewline(string) {
+  return string.split(/\r?\n/)
 }
 
 // Helper functions for interacting with API
