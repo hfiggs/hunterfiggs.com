@@ -20,8 +20,6 @@ def _centerNormalizedDigitOnFullSize(normalized_img: np.ndarray) -> np.ndarray:
     c_x = moments["m10"] / moments["m00"]
     c_y = moments["m01"] / moments["m00"]
 
-    print(f"c_x: {c_x}, c_y: {c_y}")
-
     # Rename images to large and small for readability
     l_img = full_size_image
     s_img = normalized_img
