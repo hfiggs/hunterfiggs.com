@@ -17,8 +17,10 @@ def _centerNormalizedDigitOnFullSize(normalized_img: np.ndarray) -> np.ndarray:
 
     # Calculate center of mass coords for normalized image
     moments = cv2.moments(cv2.bitwise_not(normalized_img))
-    c_x = int(moments["m10"] / moments["m00"])
-    c_y = int(moments["m01"] / moments["m00"])
+    c_x = moments["m10"] / moments["m00"]
+    c_y = moments["m01"] / moments["m00"]
+
+    print(f"c_x: {c_x}, c_y: {c_y}")
 
     # Rename images to large and small for readability
     l_img = full_size_image
@@ -32,8 +34,8 @@ def _centerNormalizedDigitOnFullSize(normalized_img: np.ndarray) -> np.ndarray:
     s_img_size_y = s_img.shape[0]
 
     # Calculate the offsets to center the small image
-    x_off_0 = int(l_img_size_x/2) - c_x
-    y_off_0 = int(l_img_size_y/2) - c_y
+    x_off_0 = int(l_img_size_x/2 - c_x)
+    y_off_0 = int(l_img_size_y/2 - c_y)
 
     # Bounds check the offset in case the center of mass is too extreme
     room_x = l_img_size_x - s_img_size_x
