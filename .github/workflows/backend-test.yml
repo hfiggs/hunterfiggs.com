@@ -37,3 +37,20 @@ jobs:
         run: pip install ruff
       - name: Run Ruff
         run: ruff check backend/src/
+  pytest:
+    name: Pytest tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install Pytest and plugs
+        run: pip install pytest pytest-cov pytest-datafiles
+      - name: Install backend app as package
+        run: pip install --editable backend/
+      - name: Run Pytest tests
+        run: pytest --cov=backend/src/ backend/tests/
