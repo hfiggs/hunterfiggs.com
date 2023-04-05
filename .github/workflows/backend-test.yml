@@ -6,7 +6,7 @@ on:
 
 jobs:
   mypy:
-    name: Mypy type-check
+    name: Mypy type check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
