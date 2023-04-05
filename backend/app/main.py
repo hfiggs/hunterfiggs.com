@@ -1,4 +1,4 @@
-import cv2 # type: ignore
+import cv2  # type: ignore
 from fastapi import FastAPI, UploadFile
 from fastapi.responses import HTMLResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,9 +25,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
 
 @app.get("/predict-digit")
 async def get_predict_digit():
@@ -41,6 +43,7 @@ async def get_predict_digit():
     """
     return HTMLResponse(content=content)
 
+
 @app.post("/predict-digit")
 async def predict_digit(file: UploadFile):
     img_raw = await file.read()
@@ -48,6 +51,7 @@ async def predict_digit(file: UploadFile):
     img = cv2.imdecode(img_buf, cv2.IMREAD_UNCHANGED)
 
     return {"probs": model.predict_probs(img)}
+
 
 @app.head("/wakeup")
 async def wakeup():
