@@ -60,6 +60,7 @@ def _is_valid_img(img: np.ndarray) -> bool:
             and img.shape[0] != 0
             and img.shape[1] != 0
             and (img.shape[2] == 3 or img.shape[2] == 4)
+            and img.dtype == np.uint8
             )
 
 
