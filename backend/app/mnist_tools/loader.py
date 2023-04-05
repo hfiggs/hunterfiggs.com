@@ -55,7 +55,6 @@ def _read_idx_file(file_path: Path) -> np.ndarray:
                     f" expected {_IDX_DTYPE_MAP.keys()!r},"
                     f" read {idx_header_dtype_bytes!r}"
                 )
-
             )
 
         data_shape: tuple = struct.unpack(
@@ -77,15 +76,3 @@ def load() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         test_labels = _read_idx_file(path / _TEST_LABELS_FILE_NAME)
 
         return train_images, train_labels, test_images, test_labels
-
-
-if __name__ == '__main__':
-    import cv2  # type: ignore
-    import loader  # type: ignore
-    train_images, train_labels, _, _ = loader.load()
-
-    for i in range(10):
-        cv2.imshow(
-            f"Example #{i+1}, Label: {train_labels[i]}", train_images[i])
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
