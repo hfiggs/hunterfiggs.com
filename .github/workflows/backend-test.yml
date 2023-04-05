@@ -21,7 +21,7 @@ jobs:
       - name: Install Mypy
         run: pip install mypy
       - name: Run Mypy
-        run: mypy backend/
+        run: mypy backend/src/
   ruff:
     name: Ruff lint
     runs-on: ubuntu-latest
@@ -36,4 +36,4 @@ jobs:
       - name: Install Ruff
         run: pip install ruff
       - name: Run Ruff
-        run: ruff check backend/
+        run: ruff check backend/src/
