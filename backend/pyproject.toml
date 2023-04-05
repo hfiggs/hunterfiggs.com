@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "app"
+version = "0.0.0"
+description = "hunterfiggs.com backend app"
+license = {text = "MIT License"}
+authors = [
+  {name = "Hunter Figgs", email = "hunter.figgs@gmail.com"},
+]
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
