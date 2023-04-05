@@ -1,0 +1,15 @@
+name: Backend workflow
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'backend/**'
+
+  # Enable running workflow manually from Actions tab
+  workflow_dispatch:
+  
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
