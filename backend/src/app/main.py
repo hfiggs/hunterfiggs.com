@@ -31,6 +31,11 @@ async def root():
     return {"message": "Hello World"}
 
 
+@app.head("/")
+async def head_root():
+    return Response()
+
+
 @app.get("/predict-digit")
 async def get_predict_digit():
     content = """
