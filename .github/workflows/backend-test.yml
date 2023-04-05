@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  mypy:
+    name: Mypy type-check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -17,5 +18,22 @@ jobs:
           cache: 'pip'
       - name: Install Python requirements
         run: pip install -r backend/requirements.txt
+      - name: Install Mypy
+        run: pip install mypy
       - name: Run Mypy
         run: mypy backend/
+  ruff:
+    name: Ruff lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install Ruff
+        run: pip install ruff
+      - name: Run Ruff
+        run: ruff check backend/
