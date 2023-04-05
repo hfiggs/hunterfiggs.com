@@ -55,7 +55,7 @@ def _centerNormalizedDigitOnFullSize(normalized_img: cv2.Mat) -> cv2.Mat:
 
 
 def _is_valid_img(img: cv2.Mat) -> bool:
-    return (hasattr(img, 'shape')
+    return (isinstance(img, cv2.Mat)
             and len(img.shape) == 3
             and img.shape[0] != 0
             and img.shape[1] != 0
