@@ -48,6 +48,8 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+      - name: Install Python requirements
+        run: pip install -r backend/requirements.txt
       - name: Install Pytest and plugs
         run: pip install pytest pytest-cov pytest-datafiles
       - name: Install backend app as package
