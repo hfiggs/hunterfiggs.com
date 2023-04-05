@@ -17,4 +17,4 @@ concurrency:
 jobs:
   backend-test:
     name: Backend Test
-    uses: hfiggs/hunterfiggs.com/.github/workflows/backend-test.yaml@main
+    uses: hfiggs/hunterfiggs.com/.github/workflows/backend-test.yml@main
