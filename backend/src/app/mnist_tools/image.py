@@ -2,7 +2,7 @@ import cv2  # type: ignore
 import numpy as np
 
 from .config import (
-    MNIST_IMAGE_SIZE, MNIST_IMAGE_BORDER_VALUE, MNIST_IMAGE_WITH_BORDER_SIZE
+    MNIST_IMAGE_SIZE, MNIST_IMAGE_BACKGROUND_VALUE, MNIST_IMAGE_WITH_BORDER_SIZE
 )
 
 # Center normalized image on full size image based on the center of mass of the digit
@@ -12,7 +12,7 @@ def _centerNormalizedDigitOnFullSize(normalized_img: np.ndarray) -> np.ndarray:
 
     full_size_image = np.full((MNIST_IMAGE_WITH_BORDER_SIZE,
                                MNIST_IMAGE_WITH_BORDER_SIZE),
-                              MNIST_IMAGE_BORDER_VALUE,
+                              MNIST_IMAGE_BACKGROUND_VALUE,
                               dtype='uint8')
 
     # Calculate center of mass coords for normalized image
