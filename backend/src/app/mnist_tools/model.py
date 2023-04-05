@@ -1,7 +1,6 @@
 import importlib.resources
 import pickle
 
-import cv2  # type: ignore
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier  # type: ignore
 
@@ -43,9 +42,9 @@ class MnistModel:
                 with open(str(path / _MODEL_BIN_FILE_NAME), 'wb') as model_bin_file:
                     pickle.dump(self.model, model_bin_file)
 
-    def predict_probs(self, img: cv2.Mat) -> dict[int, float]:
+    def predict_probs(self, img: np.ndarray) -> dict[int, float]:
         img = preprocess(img)
 
-        flat_img = np.array(img).reshape(1, MNIST_IMAGE_WITH_BORDER_AREA)
+        flat_img = img.reshape(1, MNIST_IMAGE_WITH_BORDER_AREA)
 
         return dict(enumerate(self.model.predict_proba(flat_img)[0]))

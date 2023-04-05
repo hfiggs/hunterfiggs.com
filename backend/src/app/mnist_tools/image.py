@@ -2,18 +2,18 @@ import cv2  # type: ignore
 import numpy as np
 
 from .config import (
-    MNIST_IMAGE_SIZE, MNIST_IMAGE_BORDER_VALUE, MNIST_IMAGE_WITH_BORDER_SIZE)
+    MNIST_IMAGE_SIZE, MNIST_IMAGE_BORDER_VALUE, MNIST_IMAGE_WITH_BORDER_SIZE
+)
 
 # Center normalized image on full size image based on the center of mass of the digit
 
 
-def _centerNormalizedDigitOnFullSize(normalized_img: cv2.Mat) -> cv2.Mat:
+def _centerNormalizedDigitOnFullSize(normalized_img: np.ndarray) -> np.ndarray:
 
-    full_size_image = cv2.Mat(
-        np.full((MNIST_IMAGE_WITH_BORDER_SIZE,
-                 MNIST_IMAGE_WITH_BORDER_SIZE),
-                MNIST_IMAGE_BORDER_VALUE,
-                dtype='uint8'))
+    full_size_image = np.full((MNIST_IMAGE_WITH_BORDER_SIZE,
+                               MNIST_IMAGE_WITH_BORDER_SIZE),
+                              MNIST_IMAGE_BORDER_VALUE,
+                              dtype='uint8')
 
     # Calculate center of mass coords for normalized image
     moments = cv2.moments(cv2.bitwise_not(normalized_img))
@@ -54,8 +54,8 @@ def _centerNormalizedDigitOnFullSize(normalized_img: cv2.Mat) -> cv2.Mat:
     return l_img
 
 
-def _is_valid_img(img: cv2.Mat) -> bool:
-    return (isinstance(img, cv2.Mat)
+def _is_valid_img(img: np.ndarray) -> bool:
+    return (isinstance(img, np.ndarray)
             and len(img.shape) == 3
             and img.shape[0] != 0
             and img.shape[1] != 0
@@ -63,13 +63,13 @@ def _is_valid_img(img: cv2.Mat) -> bool:
             )
 
 
-def preprocess(img: cv2.Mat) -> cv2.Mat:
+def preprocess(img: np.ndarray) -> np.ndarray:
     # If image dimensions are invalid, return empty image of correct size
     if not _is_valid_img(img):
         shape = (MNIST_IMAGE_WITH_BORDER_SIZE, MNIST_IMAGE_WITH_BORDER_SIZE)
-        return cv2.Mat(np.zeros(shape,  dtype='uint8'))
+        return np.zeros(shape,  dtype='uint8')
 
-    gray_img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
+    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     _, th = cv2.threshold(gray_img, 0, 255, cv2.THRESH_BINARY_INV)
 
@@ -93,4 +93,4 @@ def preprocess(img: cv2.Mat) -> cv2.Mat:
 
     inverted_img = cv2.bitwise_not(centered_img)
 
-    return inverted_img
+    return np.asarray(inverted_img)
