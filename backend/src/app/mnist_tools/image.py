@@ -77,6 +77,11 @@ def preprocess(img: np.ndarray) -> np.ndarray:
     coords = cv2.findNonZero(th)
     x, y, w, h = cv2.boundingRect(coords)
 
+    # If image is "blank", return empty image of correct size
+    if w == 0 or h == 0:
+        shape = (MNIST_IMAGE_WITH_BORDER_SIZE, MNIST_IMAGE_WITH_BORDER_SIZE)
+        return np.zeros(shape,  dtype='uint8')
+
     cropped_img = gray_img[y:y+h, x:x+w]
 
     old_shape = cropped_img.shape
