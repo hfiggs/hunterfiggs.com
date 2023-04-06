@@ -1,8 +1,10 @@
 # hunterfiggs.com
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hfiggs/hunterfiggs.com)
 ![GitHub license](https://img.shields.io/github/license/hfiggs/hunterfiggs.com)
-![Frontend status](https://img.shields.io/website?label=frontend&url=https%3A%2F%2Fwww.hunterfiggs.com%2F)
-![Backend status](https://img.shields.io/website?label=backend&url=https%3A%2F%2Fapi.hunterfiggs.com%2F)
+![Frontend Website Status](https://img.shields.io/website?label=frontend%20website&logo=githubpages&logoColor=white&url=https%3A%2F%2Fwww.hunterfiggs.com%2F)
+![Backend Server Status](https://img.shields.io/website?label=backend%20server&logo=googlecloud&logoColor=white&url=https%3A%2F%2Fapi.hunterfiggs.com%2F)
+![Frontend Workflow Status](https://img.shields.io/github/actions/workflow/status/hfiggs/hunterfiggs.com/frontend.yml?label=frontend%20CI%2FCD&logo=github)
+![Backend Workflow Status](https://img.shields.io/github/actions/workflow/status/hfiggs/hunterfiggs.com/backend.yml?label=backend%20CI%2FCD&logo=github)
 
 Hunter Figgs' personal website.
 
