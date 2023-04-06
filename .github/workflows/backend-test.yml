@@ -55,4 +55,4 @@ jobs:
       - name: Install backend app as package
         run: pip install --editable backend/
       - name: Run Pytest tests
-        run: pytest --cov=backend/src/ backend/tests/
+        run: pytest --cov=backend/src/ --cov-report=term-missing backend/tests/
