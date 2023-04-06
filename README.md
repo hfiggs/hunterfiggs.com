@@ -1,6 +1,5 @@
 # hunterfiggs.com
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hfiggs/hunterfiggs.com)
-![GitHub](https://img.shields.io/github/license/hfiggs/hunterfiggs.com)
 ![Frontend status](https://img.shields.io/website?label=frontend&url=https%3A%2F%2Fwww.hunterfiggs.com%2F)
 ![Backend status](https://img.shields.io/website?label=backend&url=https%3A%2F%2Fapi.hunterfiggs.com%2F)
 
