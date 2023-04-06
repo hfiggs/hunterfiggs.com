@@ -86,10 +86,11 @@ def _read_idx_file(file_path: Path) -> np.ndarray:
             dim_bytes
         )
 
-        data_item_num = math.prod(data_shape) if len(data_shape) != 0 else 0
-        data_size: int = data_item_num * np.dtype(np.uint16).itemsize
         data_type = np.dtype(_IDX_DTYPE_MAP[idx_header_dtype_bytes])
         data_type.newbyteorder('>')
+
+        data_item_num = math.prod(data_shape) if len(data_shape) != 0 else 0
+        data_size: int = data_item_num * data_type.itemsize
 
         data_bytes: bytes = file.read(data_size)
 
@@ -105,7 +106,7 @@ def _read_idx_file(file_path: Path) -> np.ndarray:
         data = np.frombuffer(data_bytes, dtype=data_type)
 
         if data.size != 0:
-            data.reshape(data_shape)
+            data = data.reshape(data_shape)
 
         return data
 
