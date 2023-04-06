@@ -50,8 +50,8 @@ jobs:
           cache: 'pip'
       - name: Install Python requirements
         run: pip install -r backend/requirements.txt
-      - name: Install Pytest and plugs
-        run: pip install pytest pytest-cov pytest-datafiles
+      - name: Install Pytest and plugins
+        run: pip install pytest pytest-cov pytest-datafiles httpx
       - name: Install backend app as package
         run: pip install --editable backend/
       - name: Run Pytest tests
