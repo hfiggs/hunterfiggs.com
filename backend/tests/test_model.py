@@ -61,6 +61,13 @@ def test_model_bad_model_pickle():
     with pytest.raises(pickle.UnpicklingError):
         model.MnistModel()
 
+    # Cleanup model bin
+    with importlib.resources.as_file(importlib.resources.files(_BIN_PATH)) as path:
+        if (path / _MODEL_BIN_FILE_NAME).is_file():
+            Path.unlink(path / model._MODEL_BIN_FILE_NAME)
+
+        assert not (path / _MODEL_BIN_FILE_NAME).is_file()
+
 
 def test_model_bad_model_pickle_type():
     # Delete model bin file if it exists
@@ -82,3 +89,10 @@ def test_model_bad_model_pickle_type():
 
     with pytest.raises(ValueError):
         model.MnistModel()
+
+    # Cleanup model bin
+    with importlib.resources.as_file(importlib.resources.files(_BIN_PATH)) as path:
+        if (path / _MODEL_BIN_FILE_NAME).is_file():
+            Path.unlink(path / model._MODEL_BIN_FILE_NAME)
+
+        assert not (path / _MODEL_BIN_FILE_NAME).is_file()
