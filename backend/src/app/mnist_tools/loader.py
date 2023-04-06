@@ -33,15 +33,28 @@ _IDX_DTYPE_MAP: dict[bytes, npt.DTypeLike] = {b'\x08': np.uint8,
 
 def _read_idx_file(file_path: Path) -> np.ndarray:
     with gzip.open(file_path, 'rb') as file:
+
+        header_bytes: bytes = file.read(_IDX_HEADER_SIZE)
+
+        if len(header_bytes) != _IDX_HEADER_SIZE:
+            raise ValueError(
+                (
+                    "IDX file header length too small,"
+                    f" expected {_IDX_HEADER_SIZE} bytes,"
+                    f" read {len(header_bytes)} bytes"
+                )
+            )
+
         idx_header_zeros, idx_header_dtype, idx_header_ndim = struct.unpack(
             f"{_IDX_ENDIANNESS_FORMAT}{_IDX_HEADER_FORMAT}",
-            file.read(_IDX_HEADER_SIZE))
+            header_bytes
+        )
 
         idx_header_zeros_bytes = int.to_bytes(idx_header_zeros, 2, 'big')
         if idx_header_zeros_bytes != _IDX_HEADER_ZEROS:
             raise ValueError(
                 (
-                    "IDX file header incorrect format for first two bytes,"
+                    "IDX file header missing first two zero bytes,"
                     f" expected {_IDX_HEADER_ZEROS!r},"
                     f" read {idx_header_zeros_bytes!r}"
                 )
@@ -51,21 +64,50 @@ def _read_idx_file(file_path: Path) -> np.ndarray:
         if idx_header_dtype_bytes not in _IDX_DTYPE_MAP:
             raise ValueError(
                 (
-                    "IDX file header incorrect format for data type,"
+                    "IDX file header has invalid data type,"
                     f" expected {_IDX_DTYPE_MAP.keys()!r},"
                     f" read {idx_header_dtype_bytes!r}"
                 )
             )
 
+        dim_bytes: bytes = file.read(_IDX_DIM_DIZE*idx_header_ndim)
+
+        if len(dim_bytes) != _IDX_DIM_DIZE*idx_header_ndim:
+            raise ValueError(
+                (
+                    "IDX file dimensions length incorrect,"
+                    f" expected {_IDX_DIM_DIZE*idx_header_ndim} bytes,"
+                    f" read {len(dim_bytes)} bytes"
+                )
+            )
+
         data_shape: tuple = struct.unpack(
             f"{_IDX_ENDIANNESS_FORMAT}{_IDX_DIM_FORMAT*idx_header_ndim}",
-            file.read(_IDX_DIM_DIZE*idx_header_ndim)
+            dim_bytes
         )
-        data_size: int = math.prod(data_shape) * np.dtype(np.uint16).itemsize
+
+        data_item_num = math.prod(data_shape) if len(data_shape) != 0 else 0
+        data_size: int = data_item_num * np.dtype(np.uint16).itemsize
         data_type = np.dtype(_IDX_DTYPE_MAP[idx_header_dtype_bytes])
         data_type.newbyteorder('>')
 
-        return np.frombuffer(file.read(data_size), dtype=data_type).reshape(data_shape)
+        data_bytes: bytes = file.read(data_size)
+
+        if len(data_bytes) != data_size:
+            raise ValueError(
+                (
+                    "IDX file data length incorrect,"
+                    f" expected {data_size} bytes,"
+                    f" read {len(data_bytes)} bytes"
+                )
+            )
+
+        data = np.frombuffer(data_bytes, dtype=data_type)
+
+        if data.size != 0:
+            data.reshape(data_shape)
+
+        return data
 
 
 def load() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
