@@ -1,0 +1,36 @@
+name: Backend Deploy
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        env:
+          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
+        steps:
+
+        - name: Google Auth
+          uses: google-github-actions/auth@v1
+          with:
+            credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+        - name: Set up Cloud SDK
+          uses: google-github-actions/setup-gcloud@v1
+
+        - name: Configure Docker
+          run: gcloud auth configure-docker --quiet
+
+        - name: Checkout repository
+          uses: actions/checkout@v3
+
+        - name: Build Docker image
+          run: docker build -t $IMAGE_NAME backend/
+
+        - name: Push Docker image
+          run: docker push $IMAGE_NAME
+
+        - name: Deploy Docker image
+          run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region us-central1 --platform managed
