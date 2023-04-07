@@ -25,7 +25,7 @@ EXAMPLE_PER_DIGIT_MIN = 5
 def test_root_get():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World"}
+    assert response.json() == {"message": "Hello World!"}
 
 
 def test_root_head():
