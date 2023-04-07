@@ -1,4 +1,4 @@
-name: Deploy frontend
+name: Frontend Workflow
 
 on:
   push:
