@@ -22,3 +22,4 @@ jobs:
   backend-deploy:
     name: Backend Deploy
     uses: hfiggs/hunterfiggs.com/.github/workflows/backend-deploy.yml@main
+    secrets: inherit
