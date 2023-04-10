@@ -116,34 +116,3 @@ td:hover {
     background-color: rgb(253, 106, 53);
   }
 }
-
-/* Navigation ***********/
-
-.navbar {
-  margin-bottom: 20px;
-}
-
-.navbar-nav li {
-  padding-left: 40px;
-}
-
-.nav-link {
-  font-size: 1.1em !important;
-}
-
-/* Footer ***********/
-
-footer {
-  position: relative;
-  width: 100%;
-  left: 0;
-  background-color: #212529;
-  color: white;
-  text-align: center;
-
-  padding: 0.25rem;
-}
-
-footer p {
-  margin-bottom: 0;
-}
