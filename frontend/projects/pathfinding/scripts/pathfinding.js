@@ -36,6 +36,21 @@ pathfinding = (function () {
       }
     });
 
+    $("#button-clear").click(function () {
+      stopPathFind();
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          let cellId = "#" + i + "-" + j;
+
+          if ($(cellId).hasClass("start") || $(cellId).hasClass("finish")) { continue; }
+
+          $(cellId).removeClass();
+          $(cellId).addClass("unseen");
+        }
+      }
+      triggerPathFind();
+    });
+
     $("td").mousedown(function () {
       mouseDown = true;
 
