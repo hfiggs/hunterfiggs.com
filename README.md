@@ -1,4 +1,4 @@
-# hunterfiggs.com
+# [hunterfiggs.com](https://www.hunterfiggs.com)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hfiggs/hunterfiggs.com)
 ![GitHub license](https://img.shields.io/github/license/hfiggs/hunterfiggs.com)
 ![Frontend Website Status](https://img.shields.io/website?label=frontend%20website&logo=githubpages&logoColor=white&url=https%3A%2F%2Fwww.hunterfiggs.com%2F)
