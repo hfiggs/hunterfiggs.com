@@ -1,6 +1,6 @@
 graph = function(){
 
-class Graph 
+class Graph
 {
     constructor(numNodes)
     {
@@ -41,7 +41,7 @@ onmessage = function(e)
 
     // distance to reach each node
     let dist = new Array(numNodes);
-    
+
     // if each node has been processed
     let proc = new Array(numNodes);
 
@@ -128,42 +128,42 @@ function gridToGraph(grid)
 
     // for each node in the grid
     for(let i = 0; i < grid.length; i++){
-        for(let j = 0; j < grid[0].length; j++){
-            
+        for(let j = 0; j < grid[0].length; j++) {
+
             // loop through its neighbors
             for(let r = -1; r <= 1; r++){
                 for(let c = -1; c <= 1; c++){
 
-                    try{
-                        let nodeNotWall = grid[i][j];
-                        let neighborNotWall = grid[i+r][j+c];
-                        if(nodeNotWall&&neighborNotWall&&!(r===0&&c===0)){
-                            let nodePos = i*grid[0].length+j;
-                            let neighborPos = nodePos + (r*grid[0].length) + c;
-                            if(r===0||c===0){
-                                graph.addEdge(nodePos,neighborPos, 1);
-                            }else{
+                    if (r===0&&c===0) { continue; }
+
+                    try {
+                        let isNodeEmpty = grid[i][j];
+                        let isNeighborEmpty = grid[i+r][j+c];
+
+                        if (!isNodeEmpty) { continue; }
+                        if (!isNeighborEmpty) { continue; }
+
+                        let nodePos = i*grid[0].length+j;
+                        let neighborPos = nodePos + (r*grid[0].length) + c;
+
+                        if(r===0||c===0){
+                            graph.addEdge(nodePos,neighborPos, 1);
+                        } else {
+                            let isAdjacent1Empty = grid[i][j+c];
+                            let isAdjacent2Empty = grid[i+r][j];
+
+                            if (isAdjacent1Empty||isAdjacent2Empty) {
                                 graph.addEdge(nodePos,neighborPos,Math.sqrt(2));
                             }
                         }
                     }
-                    catch{
+                    catch {
                         // out of bounds (no neighbor here)
                     }
                 }
             }
         }
     }
-
-    // let check = new Array(numNodes);
-    // for(i=0; i<graph.AdjMatrix.length; i++){
-    //     check[i] = 0;
-    //     for(j=0; j<graph.AdjMatrix.length; j++){
-    //         if(graph.AdjMatrix[i][j]>0){
-    //             check[i]+=1;
-    //         }
-    //     }   
-    // }
 
     return graph;
 }
